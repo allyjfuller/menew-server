@@ -19,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/allyjfuller/menew-api/issues"
   },
-  "homepage": "https://github.com/allyjfuller/menew-api#readme"
+  "homepage": "https://github.com/allyjfuller/menew-api#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "express": "^4.16.4",
+    "mocha": "^6.1.3",
+    "mongoose": "^5.5.1"
+  }
 }
