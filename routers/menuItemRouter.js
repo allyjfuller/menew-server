@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
 router.post('/', jsonParser, (req, res) => {
 	// ensure `name`, `description`, and `price` are in request body
-	const requireFields = 'name', 'description', 'price'];
+	const requireFields = ['name', 'description', 'price'];
   		for (let i=0; i<requiredFields.length; i++) {
     const field = requiredFields[i];
     	if (!(field in req.body)) {
@@ -32,7 +32,7 @@ router.post('/', jsonParser, (req, res) => {
     }
     const item = MenuItem.create(req.body.name, req.body.description, req.body.price);
   	res.status(201).json(item);
-});
+}
 
 
 // when DELETE request comes in with an id in path,
