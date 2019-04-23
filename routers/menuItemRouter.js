@@ -4,7 +4,7 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
-const {MenuItem} = require('./models');
+const {MenuItem} = require('../models');
 
 // add some items so there's data to look at
 
@@ -24,7 +24,8 @@ router.post('/', jsonParser, (req, res) => {
 	// ensure `name`, `description`, and `price` are in request body
 	const requireFields = ['name', 'description', 'price'];
   		for (let i=0; i<requiredFields.length; i++) {
-    const field = requiredFields[i];
+    const field = requiredFields[i]
+    	};
     	if (!(field in req.body)) {
     const message = `Missing \`${field}\` in request body`
       console.error(message);
@@ -32,7 +33,7 @@ router.post('/', jsonParser, (req, res) => {
     }
     const item = MenuItem.create(req.body.name, req.body.description, req.body.price);
   	res.status(201).json(item);
-}
+})
 
 
 // when DELETE request comes in with an id in path,
@@ -75,4 +76,4 @@ router.put('/:id', jsonParser, (req, res) => {
   res.status(204).end();
 })
 
-module.exports = router;
+module.exports = router

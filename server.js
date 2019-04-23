@@ -2,16 +2,18 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const morgan = require('morgan');
 const passport = require('passport');
 
+
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
-const menuItemRouter = require('./routers/menuItemRouter');
+//const menuItemRouter = require('./routers/menuItemRouter');
 
 mongoose.Promise = global.Promise;
 
-const { PORT, DATABASE_URL } = require('./config');
+const { CLIENT_ORIGIN, PORT, DATABASE_URL } = require('./config');
 
 const app = express();
 
@@ -19,20 +21,20 @@ const app = express();
 app.use(morgan('common'));
 
 // CORS
-app.use(function(req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow', 'Content-Type,Authorization');
-	res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
-	res.status(200).send((results[0].id).toString());
-  next();
-});
+app.use(
+  cors({
+    origin: CLIENT_ORIGIN
+  })
+
+
+)
 
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
-app.use('/new-menu-items', menuItemRouter);
+//app.use('/new-menu-items', menuItemRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
