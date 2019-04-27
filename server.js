@@ -8,6 +8,7 @@ const passport = require('passport');
 
 
 const { router: usersRouter } = require('./users');
+const {router: itemRouter } =require('./routers/itemRouter')
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 //const menuItemRouter = require('./routers/menuItemRouter');
 
@@ -34,6 +35,7 @@ passport.use(jwtStrategy);
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
+app.use('api/item/', itemRouter);
 //app.use('/new-menu-items', menuItemRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
