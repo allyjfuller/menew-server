@@ -26,7 +26,6 @@ router.post('/:userId', (req, res) => {
     name: { type: 'String' },
     price: { type: 'String' },
     description: { type: 'String' }
-    createdAt: { type: 'String' }
   }
 
   User.findById(req.params.userId)
