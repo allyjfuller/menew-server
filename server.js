@@ -12,7 +12,8 @@ const {router: itemRouter } =require('./routers/itemRouter')
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 //const menuItemRouter = require('./routers/menuItemRouter');
 
-mongoose.Promise = global.Promise;
+mongoose.set('useNewUrlParser', true);
+mongoose.connect('mongodb+srv://test-user:testuser@clustera1-ygugx.mongodb.net/heroku-deploy-menew-app?retryWrites=true', { useCreateIndex: true });
 
 const { CLIENT_ORIGIN, PORT, DATABASE_URL } = require('./config');
 

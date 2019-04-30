@@ -13,49 +13,32 @@ const { Item } = require('../items/model')
 router.use(bodyParser.json())
 
 // Get user items
-router.get('/:itemName', (req, res) => {
-  console.log(req.params);
-  res.send('hello');
+// router.get('/:itemName', (req, res) => {
+//   console.log(req.params);
+//   res.send('hello');
   
-  /*Item.findByName(req.params.)
-    .then(user => {
-      console.log(user);
-      res.json(user.items)
-    })*/
-})
+//})
 
 router.post('/', (req, res) => {
   console.log(req.body);
   Item.create( req.body )
-  .then(results => console.log(results))
-  .catch((err) => console.log('Error', err))
-  
+  .then(results => res.json(results))
+  .catch((err) => console.log('Error'))
+
 })
 
-router.delete('/:userId', (req, res) => {
-
-  User.findById(req.params.userId)
-    .then(user => {
-
-      user.items.id(req.body.itemId).remove()
-
-      user.save(err => {
-        if (err) {
-          res.send(err)
-        }
-        res.json(user.items)
-      })
-    })
+router.get('/:currentUser', (req, res) => {
+  Item.find({userEmail:req.params.currentUser})
+  .then(results => res.json(results))
+  .catch((err) => console.log(err, 'Error'))
 })
 
+router.delete('/:_id', (req, res) => {
+  console.log('Hello')
+  Item.findByIdAndRemove(req.params._id)
+  .then(results => res.json(results))
+  .catch((err) => console.log(err, 'Error'))
 
-router.post('/filter/:userId', (req, res) => {
-  User.findOne({_id: req.params.userId})
-    .where('items.name')
-    .equals('Pizza')
-    .then(user => {
-      console.log(user.items);
-    })
 })
 
 
