@@ -14,7 +14,8 @@ const UserSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  establishmentName: {type: String, default: ''}
+  establishmentName: {type: String, default: ''},
+  extablishmentType: {type: String, default:''}
 });
 
 UserSchema.methods.serialize = function() {

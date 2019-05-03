@@ -33,6 +33,12 @@ router.get('/:currentUser', (req, res) => {
   .catch((err) => console.log(err, 'Error'))
 })
 
+router.get('/:item', (req, res) => {
+  Item.find( req.body )
+  .then(results => res.json(results))
+  .catch((err) => console.log(err, 'Error'))
+})
+
 router.delete('/:_id', (req, res) => {
   console.log('Hello')
   Item.findByIdAndRemove(req.params._id)
