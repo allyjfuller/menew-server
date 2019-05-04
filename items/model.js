@@ -4,7 +4,8 @@ const ItemSchema = mongoose.Schema({
 	name: { type: 'String' },
 	price: { type: 'String' },
 	description: { type: 'String' },
-	userEmail: { type: 'String'}
+	userEmail: { type: 'String' },
+	establishmentName: { type: 'String' }
 
 })
 
