@@ -27,14 +27,22 @@ router.post('/', (req, res) => {
 
 })
 
+router.get('/find/:itemName', (req, res) => {
+  console.log(req.params)
+  Item.find({name:req.params.itemName})
+  .then(results => res.json(results))
+  .catch((err) => console.log(err, 'Error'))
+})
+
 router.get('/:currentUser', (req, res) => {
   Item.find({userEmail:req.params.currentUser})
   .then(results => res.json(results))
   .catch((err) => console.log(err, 'Error'))
 })
 
-router.get('/:item', (req, res) => {
-  Item.find( req.body )
+router.get('/', (req, res) => {
+  Item.find({})
+  .sort({'date': -1}).limit(5)
   .then(results => res.json(results))
   .catch((err) => console.log(err, 'Error'))
 })
