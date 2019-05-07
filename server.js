@@ -13,7 +13,7 @@ const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 //const menuItemRouter = require('./routers/menuItemRouter');
 
 mongoose.set('useNewUrlParser', true);
-mongoose.connect('mongodb+srv://test-user:testuser@clustera1-ygugx.mongodb.net/heroku-deploy-menew-app?retryWrites=true', { useCreateIndex: true });
+mongoose.connect('mongodb+srv://ally-admin:allyjfuller@menewcluster-vpij5.mongodb.net/test?retryWrites=true', { useCreateIndex: true });
 
 const { CLIENT_ORIGIN, PORT, DATABASE_URL } = require('./config');
 
