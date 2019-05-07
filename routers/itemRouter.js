@@ -42,7 +42,7 @@ router.get('/:currentUser', (req, res) => {
 
 router.get('/', (req, res) => {
   Item.find({})
-  .sort({'date': -1}).limit(15)
+  .sort({'date': -1}).limit(30)
   .then(results => res.json(results))
   .catch((err) => console.log(err, 'Error'))
 })
