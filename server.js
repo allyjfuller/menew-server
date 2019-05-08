@@ -24,9 +24,7 @@ app.use(morgan('common'));
 
 // CORS
 app.use(
-  cors({
-    origin: CLIENT_ORIGIN
-  })
+  cors()
 
 
 )
