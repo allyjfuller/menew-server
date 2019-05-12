@@ -34,6 +34,18 @@ router.get('/find/:itemName', (req, res) => {
   .catch((err) => console.log(err, 'Error'))
 })
 
+// New search endpoint?
+
+/*
+router.get('/:itemName', (req, res) => {
+  const { search = ""} req.query;
+  let results = Item.filter(Item =>
+    Item.name.toLowerCase().includes(search.toLowerCase().trim())
+    );
+    res.json(results);
+})
+*/
+
 router.get('/:currentUser', (req, res) => {
   Item.find({userEmail:req.params.currentUser})
   .then(results => res.json(results))
