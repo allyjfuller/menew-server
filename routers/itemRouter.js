@@ -12,12 +12,6 @@ const { Item } = require('../items/model')
 //router.use(jwtAuth)
 router.use(bodyParser.json())
 
-// Get user items
-// router.get('/:itemName', (req, res) => {
-//   console.log(req.params);
-//   res.send('hello');
-  
-//})
 
 router.post('/', (req, res) => {
   console.log(req.body);
@@ -29,22 +23,10 @@ router.post('/', (req, res) => {
 
 router.get('/find/:itemName', (req, res) => {
   console.log(req.params)
-  Item.find({name:req.params.itemName})
+  Item.find({name:{"$regex":req.params.itemName, "$options":"i"}})
   .then(results => res.json(results))
   .catch((err) => console.log(err, 'Error'))
 })
-
-// New search endpoint?
-
-/*
-router.get('/:itemName', (req, res) => {
-  const { search = ""} req.query;
-  let results = Item.filter(Item =>
-    Item.name.toLowerCase().includes(search.toLowerCase().trim())
-    );
-    res.json(results);
-})
-*/
 
 router.get('/:currentUser', (req, res) => {
   Item.find({userEmail:req.params.currentUser})
